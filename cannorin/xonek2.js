@@ -233,19 +233,32 @@ var XoneK2;
                     inKey: "parameter".concat(4 - k)
                 });
             }
-            // Low EQ knob. With shift, switches to QuickEffect superknob.
+            // Low EQ knob. With shift, switches to QuickEffect superknob. Stays as
+            // QuickEffect superknob until shift is pressed again to allow using the
+            // QuickEffect superknob without having to keep shift held down. This
+            // allows using the QuickEffect superknob for a transition while using
+            // the other hand for another control.
             _this.knobs[3] = new components.Pot({
+                hasBeenTurnedSinceShiftToggle: false,
+                input: function (channel, control, value, status) {
+                    components.Pot.prototype.input.call(this, channel, control, value, status);
+                    this.hasBeenTurnedSinceShiftToggle = true;
+                },
                 unshift: function () {
-                    this.disconnect();
-                    this.group = "[EqualizerRack1_".concat(parent.deckString, "_Effect1]");
-                    this.inKey = 'parameter1';
-                    this.connect();
+                    if (!this.hasBeenTurnedSinceShiftToggle) {
+                        this.disconnect();
+                        this.group = "[EqualizerRack1_".concat(parent.deckString, "_Effect1]");
+                        this.inKey = 'parameter1';
+                        this.connect();
+                    }
+                    this.hasBeenTurnedSinceShiftToggle = false;
                 },
                 shift: function () {
                     this.disconnect();
                     this.group = "[QuickEffectRack1_".concat(parent.deckString, "]");
                     this.inKey = 'super1';
                     this.connect();
+                    this.hasBeenTurnedSinceShiftToggle = false;
                 }
             });
             _this.fader = new components.Pot({ inKey: 'volume' });

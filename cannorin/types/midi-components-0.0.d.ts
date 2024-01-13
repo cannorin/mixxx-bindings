@@ -24,7 +24,7 @@ declare namespace components {
     midi: number[];
 
     inValueScale(value: number): number;
-    input(channel: number, control: Control, value: number, status: number, group: string): void;
+    input(channel: number, control: Control, value: number, status: number, group?: string): void;
     outValueScale(value: number): number;
     output(value: number, group: string, control: Control): void;
     outConnect: boolean;
