@@ -63,8 +63,8 @@ var XoneK2;
         green: 0x17
     };
     var deckBottomButtonLayers = [
-        { name: 'loop', layerButtonNoteNumber: layerButtonColor.green },
         { name: 'cue', layerButtonNoteNumber: layerButtonColor.red },
+        { name: 'loop', layerButtonNoteNumber: layerButtonColor.green },
         { name: 'fx', layerButtonNoteNumber: layerButtonColor.amber },
     ];
     var deckBottomButtonLayerNames = deckBottomButtonLayers.map(function (x) { return x.name; });

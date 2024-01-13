@@ -53,8 +53,8 @@ namespace XoneK2 {
   };
 
   const deckBottomButtonLayers = [
-    { name: 'loop', layerButtonNoteNumber: layerButtonColor.green },
     { name: 'cue', layerButtonNoteNumber: layerButtonColor.red },
+    { name: 'loop', layerButtonNoteNumber: layerButtonColor.green },
     { name: 'fx', layerButtonNoteNumber: layerButtonColor.amber },
   ] as const;
   const deckBottomButtonLayerNames: typeof deckBottomButtonLayers[number]["name"][] =
